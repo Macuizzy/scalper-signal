@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scalper Signal - Sala de Sinais de Trading</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>📊 SCALPER SIGNAL</h1>
+                <p>Sala de Sinais - Forex & Opções Binárias</p>
+            </div>
+            <div class="status">
+                <span class="indicator" id="connection"></span>
+                <span id="status-text">Conectando...</span>
+            </div>
+        </header>
+
+        <!-- Stats Dashboard -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <h3>Sinais Hoje</h3>
+                <p class="stat-number" id="total-signals">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Taxa de Acerto</h3>
+                <p class="stat-number" id="hit-rate">0%</p>
+            </div>
+            <div class="stat-box">
+                <h3>Último Sinal</h3>
+                <p class="stat-time" id="last-signal">-</p>
+            </div>
+            <div class="stat-box">
+                <h3>Lucro/Prejuízo</h3>
+                <p class="stat-number" id="profit" style="color: #4CAF50;">R$ 0.00</p>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <select id="filter-pair">
+                <option value="">Todos os Pares</option>
+                <option value="EURUSD">EUR/USD</option>
+                <option value="GBPUSD">GBP/USD</option>
+                <option value="USDJPY">USD/JPY</option>
+                <option value="AUDUSD">AUD/USD</option>
+                <option value="GOLD">OURO (XAUUSD)</option>
+                <option value="BTC">BTC/USD</option>
+                <option value="OIL">Petróleo (WTI)</option>
+            </select>
+
+            <select id="filter-type">
+                <option value="">Todos os Tipos</option>
+                <option value="CALL">CALL (Alta)</option>
+                <option value="PUT">PUT (Baixa)</option>
+            </select>
+
+            <select id="filter-timeframe">
+                <option value="">Todos os Prazos</option>
+                <option value="1m">1 Minuto</option>
+                <option value="5m">5 Minutos</option>
+                <option value="15m">15 Minutos</option>
+                <option value="1h">1 Hora</option>
+            </select>
+
+            <button id="btn-clear" class="btn-clear">Limpar Filtros</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Signals Feed -->
+            <div class="signals-panel">
+                <h2>📡 SINAIS EM TEMPO REAL</h2>
+                <div class="signals-list" id="signals-list">
+                    <p class="loading">Aguardando sinais...</p>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="chart-panel">
+                <h2>📈 ANÁLISE</h2>
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signal Details Modal -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modal-title">Detalhes do Sinal</h2>
+                <div id="modal-body"></div>
+                <div class="modal-actions">
+                    <button class="btn btn-success" id="btn-confirm">✓ Confirmar Entrada</button>
+                    <button class="btn btn-danger" id="btn-cancel">✗ Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Signal Form (Admin) -->
+        <div class="admin-section">
+            <h3>➕ ADICIONAR NOVO SINAL (Admin)</h3>
+            <form id="form-signal">
+                <input type="text" id="pair" placeholder="Par (ex: EURUSD)" required>
+                <select id="type" required>
+                    <option value="">Selecione o tipo</option>
+                    <option value="CALL">CALL (Alta)</option>
+                    <option value="PUT">PUT (Baixa)</option>
+                </select>
+                <input type="number" id="entry" placeholder="Preço de Entrada" step="0.0001" required>
+                <input type="number" id="tp" placeholder="Take Profit (TP)" step="0.0001" required>
+                <input type="number" id="sl" placeholder="Stop Loss (SL)" step="0.0001" required>
+                <select id="timeframe" required>
+                    <option value="">Selecione o timeframe</option>
+                    <option value="1m">1 Minuto</option>
+                    <option value="5m">5 Minutos</option>
+                    <option value="15m">15 Minutos</option>
+                    <option value="1h">1 Hora</option>
+                </select>
+                <textarea id="analysis" placeholder="Análise técnica..."></textarea>
+                <button type="submit" class="btn btn-primary">Enviar Sinal</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
