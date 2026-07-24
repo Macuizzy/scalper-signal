@@ -1,0 +1,23 @@
+{
+  "name": "scalper-signal",
+  "version": "1.0.0",
+  "description": "Sala de Sinais de Trading - Forex & Opções Binárias",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000"
+  },
+  "keywords": [
+    "trading",
+    "signals",
+    "scalp",
+    "forex",
+    "opcoes-binarias",
+    "sinais"
+  ],
+  "author": "Macuizzy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Macuizzy/scalper-signal.git"
+  }
+}
